@@ -5,7 +5,7 @@ from .models import Contact, Note, Role, Company, Job, Log
 # Register your models with the admin site
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    list_display = ('fname', 'lname', 'email', 'phone', 'created', 'updated')
+    list_display = ('lname', 'fname', 'email', 'phone', 'created', 'updated')
 
 @admin.register(Note)
 class NoteAdmin(admin.ModelAdmin):
