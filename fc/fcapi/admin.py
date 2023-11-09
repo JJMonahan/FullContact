@@ -21,7 +21,7 @@ class CompanyAdmin(admin.ModelAdmin):
 
 @admin.register(Job)
 class JobAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'url', 'created', 'updated')
+    list_display = ('company', 'title', 'url', 'created', 'updated')
 
 @admin.register(Log)
 class LogAdmin(admin.ModelAdmin):
