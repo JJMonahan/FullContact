@@ -1,5 +1,17 @@
 /fcvenv
 
+# NPM STuff
+node_modules/
+npm-debug.log
+.env
+package-lock.json
+yarn.lock
+
+# user stuff
+*.log
+*.bak
+*.tmp
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
