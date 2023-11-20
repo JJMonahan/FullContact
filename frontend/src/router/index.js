@@ -1,28 +1,29 @@
-// src/router/index.js
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import HomePage from '@/views/HomePage.vue';
+// css
+import '@/main.css'; // Import the main stylesheet
 
-Vue.use(VueRouter);
+// Composables
+import{ createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
     path: '/',
-    name: 'HomePage',
-    component: HomePage,
+    component: () => import('@/layouts/default/Default.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        // route level code-splitting
+        // this generates a separate chunk (Home-[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import('@/views/Home.vue'),
+      },
+    ],
   },
-  {
-    path: '/index.html',
-    name: 'index',
-    component: HomePage,
-  },
-  // Add your other routes as needed
-];
+]
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes,
-});
+})
 
-export default router;
+export default router

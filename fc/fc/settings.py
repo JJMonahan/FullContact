@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8080",  # Add the URL of your Vue.js app
+    "http://localhost:3000",  # Add the URL of your Vue.js app
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True

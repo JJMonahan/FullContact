@@ -12,4 +12,4 @@ deactivate
 
 # Start Vue.js server in the same screen session "FullContact"
 echo "Starting Vue.js server at $VUE_DIR ..."
-screen -S FullContact -X screen bash -c "cd ${VUE_DIR} && screen -t vue npm run serve"
+screen -S FullContact -X screen bash -c "cd ${VUE_DIR} && screen -t vue npm run dev"

@@ -1,0 +1,18 @@
+/* main.css */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #791020;
+  }
+  
+/* Header styles */
+.v-app-bar {
+    background-color: #2196F3; /* Change to your preferred header color */
+    color: rgb(73, 6, 6); /* Change to your preferred text color */
+  }
+  
+  /* Footer styles */
+  .v-footer {
+    background-color: #2196F3; /* Change to your preferred header color */
+    color: rgb(83, 11, 11); /* Change to your preferred text color */
+  }
+  

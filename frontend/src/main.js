@@ -1,12 +1,23 @@
-// src/main.js
-import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
-import './assets/styles.css'; // Import the global CSS file
+/**
+ * main.js
+ *
+ * Bootstraps Vuetify and other plugins then mounts the App`
+ */
+// css
+import vuetifyCustomTheme from '@/vuetify.custom.theme.js'; // Import the custom theme
+import '@/main.css'; // Import the main stylesheet
+import Axios from 'axios';
 
-Vue.config.productionTip = false;
+// Plugins
+import { registerPlugins } from '@/plugins'
 
-new Vue({
-  router,
-  render: h => h(App),
-}).$mount('#app');
+// Components
+import App from './App.vue'
+
+// Composables
+import { createApp } from 'vue'
+
+const app = createApp(App)
+registerPlugins(app)
+app.config.globalProperties.$axios = Axios;
+app.mount('#app')
