@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-toolbar :title="`Jobs (${jobs.length})`" color="secondary">
+    <v-toolbar :title="`Contacts (${contacts.length})`" color="secondary">
       <v-spacer></v-spacer>
       <!-- Filter button with icon -->
       <v-btn icon @click="openFilterDialog">
@@ -18,38 +18,37 @@
       </v-btn>
     </v-toolbar>
     <v-row>
-      <v-col v-for="job in jobs" :key="job.id" cols="12" md="6" lg="4">
-        <!-- Use the JobCard component and pass the job data as a prop -->
-        <job-card :job="job" />
+      <v-col v-for="contact in contacts" :key="contact.id" cols="12" md="6" lg="4">
+        <contact-card :contact="contact" />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import JobCard from './JobCard.vue';
+import ContactCard from './ContactCard.vue';
 
 export default {
   components: {
-    JobCard,
+    ContactCard,
   },
   data() {
     return {
-      jobs: [],
+      contacts: [],
       sortDirection: 'asc',
     };
   },
   mounted() {
-    this.fetchJobs();
+    this.fetchContacts();
   },
   methods: {
-    async fetchJobs() {
+    async fetchContacts() {
       try {
-        const response = await fetch('http://localhost:8000/api/jobs');
+        const response = await fetch('http://localhost:8000/api/contacts');
         const data = await response.json();
-        this.jobs = data.results;
+        this.contacts = data.results;
       } catch (error) {
-        console.error('Error fetching jobs:', error);
+        console.error('Error fetching contacts:', error);
       }
     },
     openLink(url) {
@@ -66,20 +65,20 @@ export default {
       // Implement the logic to toggle the sort direction
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
       console.log('Toggle sort direction logic here');
-      this.sortJobs();
+      this.sortContacts();
     },
     sortJobs() {
       // Use slice to create a copy of the array and sort the copy
-      const sortedJobs = this.jobs.slice().sort((a, b) => {
-        // First, sort by status
+      const sortedContacts = this.contacts.slice().sort((a, b) => {
+        // Sort by name
         const statusComparison = a.status.localeCompare(b.status);
 
         // If statuses are equal, then sort by title
         if (statusComparison === 0) {
           if (this.sortDirection === 'asc') {
-            return a.title.localeCompare(b.title);
+            return a.lname.localeCompare(b.lname);
           } else {
-            return b.title.localeCompare(a.title);
+            return b.lname.localeCompare(a.lname);
           }
         }
 
@@ -88,7 +87,7 @@ export default {
       });
 
       // Update the original array with the sorted copy
-      this.jobs.splice(0, this.jobs.length, ...sortedJobs);
+      this.contacts.splice(0, this.jobs.length, ...sortedContacts);
     },
     addNewItem() {
       // Implement the logic to add a new item to your database

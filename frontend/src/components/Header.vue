@@ -20,6 +20,7 @@ export default {
   computed: {
     headerLinks() {
       return [
+        { title: 'All Sections', icon: 'mdi-briefcase-outline', view: 'all' },
         { title: 'Companies', icon: 'mdi-briefcase-outline', view: 'companies' },
         { title: 'Jobs', icon: 'mdi-briefcase', view: 'jobs' },
         { title: 'Dashboard', icon: 'mdi-view-dashboard', view: 'dashboard' },

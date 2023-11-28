@@ -61,12 +61,61 @@ class Note(models.Model):
         super(Note, self).save(*args, **kwargs)
 
 class Job(models.Model):
+    STATUS_CHOICES = [
+        ("0", "Expressed Interest"),
+        ("1", "Applied"),
+        ("2", "Interviewing"),
+        ("3", "Pending Offer"),
+        ("4", "Rejection Received"),
+        ("5", "Withdrawn"),
+    ]
+    LOCATION_CHOICES = [
+        ("0", "Unknown"),
+        ("1", "Office"),
+        ("2", "Hybrid"),
+        ("3", "Remote"),
+    ]
+    TRAVEL_CHOICES = [
+        ("0", "Unknown"),
+        ("1", "None"),
+        ("2", "Low"),
+        ("3", "Medium"),
+        ("4", "High"),
+    ]
+    PRIORITY_CHOICES = [
+        ("0", "Unknown"),
+        ("1", "Low"),
+        ("2", "Medium"),
+        ("3", "High"),
+        ("4", "Critical"),
+    ]
+    COMP_CHOICES = [
+        ("0", "Unknown"),
+        ("1", "Low"),
+        ("2", "Medium"),
+        ("3", "High"),
+    ]
+    QUAL_CHOICES = [
+        ("0", "Unknown"),
+        ("1", "Comfortable"),
+        ("2", "Challenged"),
+        ("3", "Stretching"),
+    ]
+    
     id = models.AutoField(primary_key=True)
     title = models.TextField()
     description = models.TextField()
     url = models.TextField()
     company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True, blank=True)
     contacts = ManyToManyField(Contact, related_name='jobs') #, widget=ContactSelectMultiple)
+
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='0')
+    location = models.CharField(max_length=50, choices=LOCATION_CHOICES, default='0')
+    travel = models.CharField(max_length=50, choices=TRAVEL_CHOICES, default='0')
+    priority = models.CharField(max_length=50, choices=PRIORITY_CHOICES, default='0')
+    compensation = models.CharField(max_length=50, choices=COMP_CHOICES, default='0')
+    qualifications = models.CharField(max_length=50, choices=QUAL_CHOICES, default='0')
+
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(default=timezone.now)
 
